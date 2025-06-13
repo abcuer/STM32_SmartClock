@@ -2,11 +2,14 @@
 
 uint8_t AlarmMode = 0; //倒计时闹钟 || 定时闹钟
 uint8_t AlarmCount = 0;								//是否在计时标志，0为不在计时
+uint8_t alarm_triggered = 0;  // 闹钟触发标志
+uint32_t alarm_on_tick = 0;   // 记录蜂鸣器开始响的时间（单位：秒）
 uint8_t Mode = 0;							//按键调节闹钟/日期/时间，0为调节闹钟，1为调节日期，2为调节时间
 uint8_t Hour = 0, Min = 0, Sec = 0;							//用来调整闹钟时间的变量
 uint32_t Alarm_CNT = 0, Alarm_Time = 0, Alarm_Time_Rest = 0;	//闹钟相关变量，单位都是秒
 uint8_t KeyNum = 0;
 uint8_t Clock_Day = 0;
+
 /*
 Mode
  0：闹钟
@@ -108,7 +111,7 @@ void AlarmSet(void)
 			Hour = 0, Min = 0, Sec = 0;
 			Buzzer_OFF();		//关闭蜂鸣器
 			Red_OFF();
-			OLED_ShowString(4,1,"        ");	//刷新oled第四行	
+			OLED_ShowString(4,1,"                ");	//刷新oled第四行
 		}
 	}
 }
@@ -138,15 +141,15 @@ void AlarmReact(void)
     // 检查闹钟是否触发
     if (RTC_GetFlagStatus(RTC_FLAG_ALR) == SET)
     {
-        static uint8_t alarm_triggered = 0;
         if (!alarm_triggered)
         {
             RTC_ClearFlag(RTC_FLAG_ALR); // 立即清除标志
             alarm_triggered = 1;
 			// 显示并蜂鸣
-            OLED_ShowString(4, 1, "   Time Out  ");
+            OLED_ShowString(4, 1, "    Time Out   ");
             Buzzer_ON();
 			Red_ON();
+			alarm_on_tick = RTC_GetCounter();  // 记录开始响的时间
             // 重置参数
             AlarmCount = 0;
             Alarm_Time = 0;
@@ -157,36 +160,9 @@ void AlarmReact(void)
     }
     else
     {
-        OLED_ShowString(4, 1, "   Counting  ");
+        OLED_ShowString(4, 1, "    Counting   ");
     }
 }
-//void AlarmReact(void)
-//{
-//	Alarm_Time_Rest = Alarm_CNT-RTC_GetCounter()+1;	//计算闹钟响起剩余时间
-//	if(Alarm_Time_Rest > Alarm_Time)				//防止溢出错误
-//		Alarm_Time_Rest = 0;
-//	
-//	OLED_ShowNum(3,7,Alarm_Time_Rest/3600,2);		//显示剩余小时
-//	OLED_ShowNum(3,10,(Alarm_Time_Rest%3600)/60,2);	//显示剩余分钟
-//	OLED_ShowNum(3,13,(Alarm_Time_Rest%3600)%60,2);	//显示剩余秒
-//	
-//	if(RTC_GetFlagStatus(RTC_FLAG_ALR) == 1)		//闹钟时间到，检查标志位为1
-//	{
-//		RTC_ClearFlag(RTC_FLAG_ALR);				//清除标志位
-//		AlarmCount = 0;Alarm_Time = 0;				//重置相关参数
-//		Hour = 0;Min = 0; Sec = 0;
-//		
-//		Buzzer_ON();								//打开蜂鸣器
-//		OLED_ShowString(4,1,"   Time Out  ");
-//		Delay_ms(100);
-//		Buzzer_OFF();
-//	}
-//	else											//闹钟时间未到
-//	{
-//		OLED_ShowString(4,1,"   Counting  ");			//显示正在计时
-//	}
-//}
-
 void DateSet(void)
 {
 	if(KeyNum == 1)			//1号按键调整年
@@ -234,7 +210,7 @@ void ClockSet(void)
 	else if(KeyNum == 4)	//4号按键
 	{
 		Mode = 0;	//改为调整闹钟
-		OLED_ShowString(4,1,"            ");	//刷新oled第四行
+		OLED_ShowString(4,1,"                ");	//刷新oled第四行
 	}			
 }
 
@@ -288,4 +264,18 @@ void MonthDaySet(void)
 				break;
 		}
 	}		
+}
+
+void Update_AlarmState(void)
+{
+	if (alarm_triggered)
+	{
+		if (RTC_GetCounter() - alarm_on_tick >= 1)
+		{
+			Buzzer_OFF();
+			Red_OFF();
+			OLED_ShowString(4, 1, "                "); // 清除提示
+			alarm_triggered = 0;
+		}
+	}
 }

@@ -21,5 +21,6 @@ int main(void)
 		MyRTC_ReadTime();							//RTC读取时间，最新的时间存储到MyRTC_Time数组中
 		Key_Control();								//调用按键控制函数
 		OLED_Show();
+		Update_AlarmState();
 	}
 }
