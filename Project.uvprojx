@@ -655,24 +655,24 @@
           <GroupName>BSP</GroupName>
           <Files>
             <File>
-              <FileName>Delay.c</FileName>
+              <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\Delay.c</FilePath>
+              <FilePath>.\BSP\delay.c</FilePath>
             </File>
             <File>
-              <FileName>Delay.h</FileName>
+              <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\BSP\Delay.h</FilePath>
+              <FilePath>.\BSP\delay.h</FilePath>
             </File>
             <File>
-              <FileName>MyRTC.c</FileName>
+              <FileName>myrtc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\MyRTC.c</FilePath>
+              <FilePath>.\BSP\myrtc.c</FilePath>
             </File>
             <File>
-              <FileName>MyRTC.h</FileName>
+              <FileName>myrtc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\BSP\MyRTC.h</FilePath>
+              <FilePath>.\BSP\myrtc.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -680,34 +680,34 @@
           <GroupName>Hardware</GroupName>
           <Files>
             <File>
-              <FileName>Led.c</FileName>
+              <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Hardware\Led.c</FilePath>
+              <FilePath>.\Hardware\led.c</FilePath>
             </File>
             <File>
-              <FileName>Led.h</FileName>
+              <FileName>led.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Hardware\Led.h</FilePath>
+              <FilePath>.\Hardware\led.h</FilePath>
             </File>
             <File>
-              <FileName>Key.c</FileName>
+              <FileName>key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Hardware\Key.c</FilePath>
+              <FilePath>.\Hardware\key.c</FilePath>
             </File>
             <File>
-              <FileName>Key.h</FileName>
+              <FileName>key.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Hardware\Key.h</FilePath>
+              <FilePath>.\Hardware\key.h</FilePath>
             </File>
             <File>
-              <FileName>Buzzer.c</FileName>
+              <FileName>buzzer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Hardware\Buzzer.c</FilePath>
+              <FilePath>.\Hardware\buzzer.c</FilePath>
             </File>
             <File>
-              <FileName>Buzzer.h</FileName>
+              <FileName>buzzer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Hardware\Buzzer.h</FilePath>
+              <FilePath>.\Hardware\buzzer.h</FilePath>
             </File>
             <File>
               <FileName>OLED.c</FileName>
@@ -738,6 +738,36 @@
               <FileName>mode.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\Application\mode.h</FilePath>
+            </File>
+            <File>
+              <FileName>setAlarm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\setAlarm.c</FilePath>
+            </File>
+            <File>
+              <FileName>setAlarm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\setAlarm.h</FilePath>
+            </File>
+            <File>
+              <FileName>setClock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\setClock.c</FilePath>
+            </File>
+            <File>
+              <FileName>setClock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\setClock.h</FilePath>
+            </File>
+            <File>
+              <FileName>setDate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Application\setDate.c</FilePath>
+            </File>
+            <File>
+              <FileName>setDate.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Application\setDate.h</FilePath>
             </File>
           </Files>
         </Group>

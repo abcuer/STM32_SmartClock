@@ -4,7 +4,6 @@
 void Buzzer_Init(void);
 void Buzzer_ON(void);
 void Buzzer_OFF(void);
-void Buzzer_TURN(void);
 uint8_t Buzzer_State(void);
 
 #endif

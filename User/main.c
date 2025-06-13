@@ -1,6 +1,6 @@
 #include "headfile.h"
 
-uint16_t MyRTC_Time[] = {2025,6,12,8,0,0};		//定义全局的时间数组，数组内容分别为年、月、日、时、分、秒
+uint16_t MyRTC_Time[] = {2025,6,14,8,0,0};		//定义全局的时间数组，数组内容分别为年、月、日、时、分、秒
 
 int main(void)
 {
@@ -20,7 +20,7 @@ int main(void)
 	{
 		MyRTC_ReadTime();							//RTC读取时间，最新的时间存储到MyRTC_Time数组中
 		Key_Control();								//调用按键控制函数
-		OLED_Show();
-		Update_AlarmState();
+		OLED_Show();								//显示OLED内容
+		Update_AlarmState();						//检测并更新蜂鸣器状态
 	}
 }

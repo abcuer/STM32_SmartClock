@@ -15,45 +15,17 @@ void Buzzer_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	
 	GPIO_Init(GPIOB,&GPIO_InitStructure);					//初始化GPIOB
-	
 	GPIO_SetBits(GPIOB,GPIO_Pin_12);						//GPIOB12引脚默认初始为1，即蜂鸣器默认关
 }
 
-/**
-  * 函    数：蜂鸣器开
-  * 参    数：无
-  * 返 回 值：无
-  */
 void Buzzer_ON(void)
 {
 	GPIO_ResetBits(GPIOB,GPIO_Pin_12);
 }
 
-/**
-  * 函    数：蜂鸣器关
-  * 参    数：无
-  * 返 回 值：无
-  */
 void Buzzer_OFF(void)
 {
 	GPIO_SetBits(GPIOB,GPIO_Pin_12);
-}
-
-/**
-  * 函    数：蜂鸣器翻转
-  * 参    数：无
-  * 返 回 值：无
-  */
-void Buzzer_TURN(void)
-{
-	if(GPIO_ReadOutputDataBit(GPIOB,GPIO_Pin_12) == 0)
-	{
-		GPIO_SetBits(GPIOB,GPIO_Pin_12);
-	}
-	else
-	{
-		GPIO_ResetBits(GPIOB,GPIO_Pin_12);
-	}
 }
 
 /**
