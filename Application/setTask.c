@@ -15,10 +15,7 @@ void keyTask(void *pvParameters)
 {
 	while(1)
 	{
-		KeyNum = Key_GetNum();
-		if(KeyNum) 
-			Key_Control();
-		
+		Key_Control();
 		vTaskDelay(pdMS_TO_TICKS(20)); // 20ms…®√Ë“ª¥Œ
 	}
 }

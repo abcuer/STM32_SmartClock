@@ -1,3 +1,5 @@
+#include "FreeRTOS.h"
+#include "task.h"
 #include "stm32f10x.h"                  // Device header
 #include "Delay.h"
 
@@ -23,7 +25,7 @@ void Key_Init(void)
 	GPIO_Init(GPIOB, &GPIO_InitStructure);						
 }
 
-#define LONG_PRESS_TIME  100   // 长按阈值（单位：调用次数，比如10ms调用一次就等于1s）
+#define LONG_PRESS_TIME  15   // 每20ms调用一次，大约1秒长按
 
 uint8_t Key_GetNum(void)
 {
@@ -39,22 +41,24 @@ uint8_t Key_GetNum(void)
 
     for(uint8_t i=0; i<4; i++)
     {
-        if(key_last[i] == 1 && key_now[i] == 0)    // 按下瞬间
+        if(key_last[i] == 1 && key_now[i] == 0) // 按下瞬间
         {
-            key_cnt[i] = 0;  // 开始计时
+            key_cnt[i] = 0;
         }
         else if(key_last[i] == 0 && key_now[i] == 0) // 一直按着
         {
-            key_cnt[i]++;
-            if(key_cnt[i] == LONG_PRESS_TIME)
+            if(key_cnt[i] < LONG_PRESS_TIME)
+                key_cnt[i]++;
+            else if(key_cnt[i] == LONG_PRESS_TIME) // 到达长按阈值
             {
-                KeyNum = (i+1) + 0x80;  // 高位标识为长按事件
+                KeyNum = (i + 1) | 0x80; // 高位标识长按
+                key_cnt[i]++; // 防止重复触发
             }
         }
         else if(key_last[i] == 0 && key_now[i] == 1) // 松开
         {
             if(key_cnt[i] < LONG_PRESS_TIME)
-                KeyNum = i + 1;  // 短按
+                KeyNum = i + 1; // 短按事件
             key_cnt[i] = 0;
         }
 
@@ -63,6 +67,7 @@ uint8_t Key_GetNum(void)
 
     return KeyNum;
 }
+
 
 //uint8_t Key_GetNum(void)
 //{
@@ -107,57 +112,57 @@ uint8_t Key_GetNum(void)
 //	
 //	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11) == 0)			//读PB11输入寄存器的状态，如果为0，则代表按键1按下
 //	{
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11) == 0)	//等待按键松手，或长按连续返回值
 //		{
 //			Temp--;
 //			if(Temp == 0)
 //			{
-//				Delay_ms(20);
+//				vTaskDelay(pdMS_TO_TICKS(20));
 //				return 1;
 //			}
 //		}
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		KeyNum = 1;												//置键码为1
 //	}
 //	
 //	if (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1) == 0)			//读PB10输入寄存器的状态，如果为0，则代表按键2按下
 //	{
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		while (GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1) == 0)	//等待按键松手，或长按连续返回值
 //		{
 //			Temp--;
 //			if(Temp == 0)
 //			{
-//				Delay_ms(20);
+//				vTaskDelay(pdMS_TO_TICKS(20));
 //				return 2;
 //			}			
 //		}
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		KeyNum = 2;												//置键码为2
 //	}
 //	
 //	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_7) == 0)			//读PB1输入寄存器的状态，如果为0，则代表按键2按下
 //	{
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));									//延时消抖
 //		while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_7) == 0)	//等待按键松手，或长按连续返回值
 //		{
 //			Temp--;
 //			if(Temp == 0)
 //			{
-//				Delay_ms(20);
+//				vTaskDelay(pdMS_TO_TICKS(20));
 //				return 3;
 //			}
 //		}
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		KeyNum = 3;												//置键码为3
 //	}
 //	
 //	if (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 0)			//读PB0输入寄存器的状态，如果为0，则代表按键2按下
 //	{
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));										//延时消抖
 //		while (GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5) == 0);	//等待按键松手
-//		Delay_ms(20);											//延时消抖
+//		vTaskDelay(pdMS_TO_TICKS(20));											//延时消抖
 //		KeyNum = 4;												//置键码为4
 //	}
 
