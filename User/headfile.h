@@ -14,6 +14,7 @@
 #include "setAlarm.h"
 #include "setClock.h"
 #include "setDate.h"
+#include "setTask.h"
 
 extern uint16_t MyRTC_Time[];
 extern uint8_t Mode;
