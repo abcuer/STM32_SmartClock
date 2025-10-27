@@ -5,6 +5,7 @@ uint16_t MyRTC_Time[] = {2025,10,27,8,0,0};		//定义全局的时间数组，数
 int main(void)
 {
 	/*模块初始化*/
+	TIM2_Init();
 	Led_Init();
 	OLED_Init();		//OLED初始化
 	MyRTC_Init();		//RTC初始化
