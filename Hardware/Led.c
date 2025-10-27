@@ -9,15 +9,15 @@ void Led_Init(void)
 	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
 	GPIO_Init(GPIOB, &GPIO_InitStructure);						//将引脚初始化为上拉输入
 	
-	GPIO_SetBits(GPIOB, GPIO_Pin_15);								
+//	GPIO_SetBits(GPIOB, GPIO_Pin_15);								
 }
 
 void Red_ON(void)
 {
-	GPIO_ResetBits(GPIOB, GPIO_Pin_15);
+	GPIO_SetBits(GPIOB, GPIO_Pin_15);
 }
 
 void Red_OFF(void)
 {
-	GPIO_SetBits(GPIOB, GPIO_Pin_15);
+	GPIO_ResetBits(GPIOB, GPIO_Pin_15);
 }

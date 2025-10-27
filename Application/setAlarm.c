@@ -109,8 +109,8 @@ void AlarmReact(void)
 			RTC_ClearFlag(RTC_FLAG_ALR);
 			alarm_triggered = 1;
 			OLED_ShowString(4, 1, "    Time Out   ");
-			Buzzer_ON();
-			Red_ON();
+			// ∆Ù∂Øƒ÷÷”
+			Alarm_Start();
 			alarm_on_tick = RTC_GetCounter();
 
 			// «Â≥˝ƒ÷÷”…Ë÷√

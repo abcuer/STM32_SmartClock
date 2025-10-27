@@ -4,6 +4,7 @@
 #include "stm32f10x.h"                  // Device header
 #include "delay.h"						//延时函数
 #include "myrtc.h"						//RTC模块
+#include "timer.h"
 
 #include "led.h"
 #include "key.h"						//按键模块
