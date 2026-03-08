@@ -1,4 +1,4 @@
-# 基于FreeRTOS的番茄时钟: 校时 | 闹钟 | 日期区分
+# FreeRTOS番茄钟: 校时 | 闹钟 | 日期区分
 
 ## [PCB开源](https://oshwhub.com/fascinating_sea/stm32_pomotimer)
 ## 功能简介
@@ -35,3 +35,4 @@
 
 ## 成品展示
 ![](.doc/src/01ba56a87b7b9fb0bd8e3f6314ca04ee.jpg)
+
