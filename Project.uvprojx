@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Start;.\Library;.\User;.\Hardware;.\Application;.\BSP;.\freertos\inc;.\freertos\port;.\freertos\src;.\freertos</IncludePath>
+              <IncludePath>.\Start;.\Library;.\User;.\App;.\Bsp;.\Hardware;.\FreeRTOS;.\FreeRTOS\Inc;.\FreeRTOS\Port;.\FreeRTOS\Src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -652,37 +652,102 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>BSP</GroupName>
+          <GroupName>App</GroupName>
+          <Files>
+            <File>
+              <FileName>mode.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\mode.c</FilePath>
+            </File>
+            <File>
+              <FileName>mode.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\mode.h</FilePath>
+            </File>
+            <File>
+              <FileName>setAlarm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\setAlarm.c</FilePath>
+            </File>
+            <File>
+              <FileName>setAlarm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\setAlarm.h</FilePath>
+            </File>
+            <File>
+              <FileName>setClock.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\setClock.c</FilePath>
+            </File>
+            <File>
+              <FileName>setClock.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\setClock.h</FilePath>
+            </File>
+            <File>
+              <FileName>setDate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\setDate.c</FilePath>
+            </File>
+            <File>
+              <FileName>setDate.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\setDate.h</FilePath>
+            </File>
+            <File>
+              <FileName>setTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\App\setTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>setTask.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\App\setTask.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Bsp</GroupName>
           <Files>
             <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\delay.c</FilePath>
+              <FilePath>.\Bsp\delay.c</FilePath>
             </File>
             <File>
               <FileName>delay.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\BSP\delay.h</FilePath>
+              <FilePath>.\Bsp\delay.h</FilePath>
             </File>
             <File>
-              <FileName>myrtc.c</FileName>
+              <FileName>rtc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\myrtc.c</FilePath>
+              <FilePath>.\Bsp\rtc.c</FilePath>
             </File>
             <File>
-              <FileName>myrtc.h</FileName>
+              <FileName>rtc.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\BSP\myrtc.h</FilePath>
+              <FilePath>.\Bsp\rtc.h</FilePath>
             </File>
             <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\BSP\timer.c</FilePath>
+              <FilePath>.\Bsp\timer.c</FilePath>
             </File>
             <File>
               <FileName>timer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\BSP\timer.h</FilePath>
+              <FilePath>.\Bsp\timer.h</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Bsp\flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Bsp\flash.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -720,74 +785,19 @@
               <FilePath>.\Hardware\buzzer.h</FilePath>
             </File>
             <File>
-              <FileName>OLED.c</FileName>
+              <FileName>oled.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Hardware\OLED.c</FilePath>
+              <FilePath>.\Hardware\oled.c</FilePath>
             </File>
             <File>
-              <FileName>OLED.h</FileName>
+              <FileName>oled.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Hardware\OLED.h</FilePath>
+              <FilePath>.\Hardware\oled.h</FilePath>
             </File>
             <File>
-              <FileName>OLED_Font.h</FileName>
+              <FileName>oled_font.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\Hardware\OLED_Font.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Application</GroupName>
-          <Files>
-            <File>
-              <FileName>mode.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\mode.c</FilePath>
-            </File>
-            <File>
-              <FileName>mode.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Application\mode.h</FilePath>
-            </File>
-            <File>
-              <FileName>setAlarm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\setAlarm.c</FilePath>
-            </File>
-            <File>
-              <FileName>setAlarm.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Application\setAlarm.h</FilePath>
-            </File>
-            <File>
-              <FileName>setClock.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\setClock.c</FilePath>
-            </File>
-            <File>
-              <FileName>setClock.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Application\setClock.h</FilePath>
-            </File>
-            <File>
-              <FileName>setDate.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\setDate.c</FilePath>
-            </File>
-            <File>
-              <FileName>setDate.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Application\setDate.h</FilePath>
-            </File>
-            <File>
-              <FileName>setTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\Application\setTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>setTask.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\Application\setTask.h</FilePath>
+              <FilePath>.\Hardware\oled_font.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -803,6 +813,11 @@
               <FileName>headfile.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\User\headfile.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\FreeRTOS\FreeRTOSConfig.h</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_conf.h</FileName>
@@ -822,152 +837,147 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>freertos/inc</GroupName>
+          <GroupName>FreeRTOS/Inc</GroupName>
           <Files>
-            <File>
-              <FileName>FreeRTOSConfig.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\freertos\FreeRTOSConfig.h</FilePath>
-            </File>
             <File>
               <FileName>atomic.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\atomic.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\atomic.h</FilePath>
             </File>
             <File>
               <FileName>croutine.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\croutine.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\croutine.h</FilePath>
             </File>
             <File>
               <FileName>deprecated_definitions.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\deprecated_definitions.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\deprecated_definitions.h</FilePath>
             </File>
             <File>
               <FileName>event_groups.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\event_groups.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\event_groups.h</FilePath>
             </File>
             <File>
               <FileName>FreeRTOS.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\FreeRTOS.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\FreeRTOS.h</FilePath>
             </File>
             <File>
               <FileName>list.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\list.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\list.h</FilePath>
             </File>
             <File>
               <FileName>message_buffer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\message_buffer.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\message_buffer.h</FilePath>
             </File>
             <File>
               <FileName>mpu_prototypes.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\mpu_prototypes.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\mpu_prototypes.h</FilePath>
             </File>
             <File>
               <FileName>mpu_wrappers.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\mpu_wrappers.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\mpu_wrappers.h</FilePath>
             </File>
             <File>
               <FileName>portable.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\portable.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\portable.h</FilePath>
             </File>
             <File>
               <FileName>projdefs.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\projdefs.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\projdefs.h</FilePath>
             </File>
             <File>
               <FileName>queue.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\queue.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\queue.h</FilePath>
             </File>
             <File>
               <FileName>semphr.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\semphr.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\semphr.h</FilePath>
             </File>
             <File>
               <FileName>stack_macros.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\stack_macros.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\stack_macros.h</FilePath>
             </File>
             <File>
               <FileName>StackMacros.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\StackMacros.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\StackMacros.h</FilePath>
             </File>
             <File>
               <FileName>stream_buffer.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\stream_buffer.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\stream_buffer.h</FilePath>
             </File>
             <File>
               <FileName>task.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\task.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\task.h</FilePath>
             </File>
             <File>
               <FileName>timers.h</FileName>
               <FileType>5</FileType>
-              <FilePath>.\freertos\inc\timers.h</FilePath>
+              <FilePath>.\FreeRTOS\Inc\timers.h</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>freertos/port</GroupName>
+          <GroupName>FreeRTOS/Port</GroupName>
           <Files>
             <File>
               <FileName>heap_4.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\port\heap_4.c</FilePath>
+              <FilePath>.\FreeRTOS\Port\heap_4.c</FilePath>
             </File>
             <File>
               <FileName>port.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\port\port.c</FilePath>
+              <FilePath>.\FreeRTOS\Port\port.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
-          <GroupName>freertos/src</GroupName>
+          <GroupName>FreeRTOS/Src</GroupName>
           <Files>
             <File>
               <FileName>croutine.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\croutine.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\croutine.c</FilePath>
             </File>
             <File>
               <FileName>event_groups.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\event_groups.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\event_groups.c</FilePath>
             </File>
             <File>
               <FileName>list.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\list.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\list.c</FilePath>
             </File>
             <File>
               <FileName>queue.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\queue.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\queue.c</FilePath>
             </File>
             <File>
               <FileName>tasks.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\tasks.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\tasks.c</FilePath>
             </File>
             <File>
               <FileName>timers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\freertos\src\timers.c</FilePath>
+              <FilePath>.\FreeRTOS\Src\timers.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -7,6 +7,17 @@ uint8_t KeyNum = 0;
 void Key_Control(void)
 {
 	KeyNum = Key_GetNum();	//读取按键键码
+	// 纭閿暱鎸夛紝 淇濆瓨鏁版嵁鍒癴lash
+	if (KeyNum == 0x84) 
+    {
+        Flash_Save();    
+        OLED_ShowString(4, 1, "  Data Saved!  "); 
+        return;        
+    }
+	if (KeyNum > 0)
+    {
+        KeyNum = KeyNum & 0x7F; 
+    }
 	
 	if(Mode == 0) 	  AlarmSet();			//调节闹钟
 	else if(Mode == 1) DateSet();		    //调节日期
@@ -16,12 +27,12 @@ void Key_Control(void)
 /*OLED显示函数*/
 void OLED_Show(void)
 {
-	OLED_ShowNum(1, 6, MyRTC_Time[0], 4);		//显示MyRTC_Time数组中的时间值，年
-	OLED_ShowNum(1, 11, MyRTC_Time[1], 2);		//月
-	OLED_ShowNum(1, 14, MyRTC_Time[2], 2);		//日
-	OLED_ShowNum(2, 7, MyRTC_Time[3], 2);		//时
-	OLED_ShowNum(2, 10, MyRTC_Time[4], 2);		//分
-	OLED_ShowNum(2, 13, MyRTC_Time[5], 2);		//秒
+	OLED_ShowNum(1, 6, RTC_Time[0], 4);		//显示RTC_Time数组中的时间值，年
+	OLED_ShowNum(1, 11, RTC_Time[1], 2);		//月
+	OLED_ShowNum(1, 14, RTC_Time[2], 2);		//日
+	OLED_ShowNum(2, 7, RTC_Time[3], 2);		//时
+	OLED_ShowNum(2, 10, RTC_Time[4], 2);		//分
+	OLED_ShowNum(2, 13, RTC_Time[5], 2);		//秒
 	
 	if(AlarmCount)										//正在计时，则显示闹钟响起剩余时间
 	{

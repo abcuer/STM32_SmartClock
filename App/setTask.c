@@ -6,7 +6,7 @@ void rtcTask(void *pvParameters)
 {
 	while(1)
 	{
-		MyRTC_ReadTime();   // 更新全局时间数组
+		RTC_ReadTime();   // 更新全局时间数组
 		vTaskDelay(pdMS_TO_TICKS(1000)); // 每1秒读取一次
 	}
 }

@@ -1,7 +1,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "stm32f10x.h"                  // Device header
-#include "Delay.h"
+#include "key.h"
 
 /**
   * 函    数：按键初始化
@@ -25,45 +25,43 @@ void Key_Init(void)
 	GPIO_Init(GPIOB, &GPIO_InitStructure);						
 }
 
-#define LONG_PRESS_TIME  15   // 每20ms调用一次，大约1秒长按
-
 uint8_t Key_GetNum(void)
 {
     static uint8_t key_last[4] = {1,1,1,1};
     static uint16_t key_cnt[4] = {0};
     uint8_t key_now[4];
     uint8_t KeyNum = 0;
-	
+    
     key_now[0] = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_5);
-	key_now[1] = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_7);
-	key_now[2] = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
-	key_now[3] = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11);
-	
+    key_now[1] = GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_7);
+    key_now[2] = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_1);
+    key_now[3] = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11);
+    
     for(uint8_t i=0; i<4; i++)
     {
-        if(key_last[i] == 1 && key_now[i] == 0) // 按下瞬间
+        if(key_now[i] == 0) // 当前按下
         {
-            key_cnt[i] = 0;
-        }
-        else if(key_last[i] == 0 && key_now[i] == 0) // 一直按着
-        {
-            if(key_cnt[i] < LONG_PRESS_TIME)
-                key_cnt[i]++;
-            else if(key_cnt[i] == LONG_PRESS_TIME) // 到达长按阈值
+            key_cnt[i]++;
+            // --- 关键改进：长按连发逻辑 ---
+            if(key_cnt[i] >= LONG_PRESS_START)
             {
-                KeyNum = (i + 1) | 0x80; // 高位标识长按
-                key_cnt[i]++; // 防止重复触发
+                // 使用取余操作实现周期性触发 KeyNum
+                if((key_cnt[i] - LONG_PRESS_START) % LONG_PRESS_SPEED == 0)
+                {
+                    KeyNum = (i + 1) | 0x80; // 返回长按键码
+                }
             }
         }
-        else if(key_last[i] == 0 && key_now[i] == 1) // 松开
+        else // 当前松开
         {
-            if(key_cnt[i] < LONG_PRESS_TIME)
-                KeyNum = i + 1; // 短按事件
-            key_cnt[i] = 0;
+            // 只有在没达到长按标准时松开，才判定为短按一次
+            if(key_cnt[i] > 2 && key_cnt[i] < LONG_PRESS_START) 
+            {
+                KeyNum = i + 1; 
+            }
+            key_cnt[i] = 0; // 清零计数
         }
-
         key_last[i] = key_now[i];
     }
-
     return KeyNum;
 }

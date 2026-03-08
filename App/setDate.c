@@ -13,22 +13,22 @@ void DateSet(void)
 {
 	if(KeyNum == 1) // 1号按键：调整年份
 	{
-		MyRTC_Time[0]++;
-		if(MyRTC_Time[0] > 2035) MyRTC_Time[0] = 2015; // 限制年份范围
-		MyRTC_SetTime(); // 写入RTC
+		RTC_Time[0]++;
+		if(RTC_Time[0] > 2035) RTC_Time[0] = 2015; // 限制年份范围
+		RTC_SetTime(); // 写入RTC
 	}
 	if(KeyNum == 2) // 2号按键：调整月份
 	{
-		MyRTC_Time[1]++;
-		if(MyRTC_Time[1] > 12) MyRTC_Time[1] = 1;
-		MyRTC_SetTime();
+		RTC_Time[1]++;
+		if(RTC_Time[1] > 12) RTC_Time[1] = 1;
+		RTC_SetTime();
 	}
 	if(KeyNum == 3) // 3号按键：调整日期（根据月份和闰年情况限制）
 	{
 		MonthDaySet(); // 获取当前月份允许的最大天数
-		MyRTC_Time[2]++;
-		if(MyRTC_Time[2] > Clock_Day) MyRTC_Time[2] = 1;
-		MyRTC_SetTime();
+		RTC_Time[2]++;
+		if(RTC_Time[2] > Clock_Day) RTC_Time[2] = 1;
+		RTC_SetTime();
 	}
 	if(KeyNum == 4) // 4号按键：切换到时间设置模式
 	{
@@ -53,14 +53,14 @@ int8_t isLeepYear(int16_t year)
 /**
   * 函    数：MonthDaySet
   * 功    能：根据当前年份与月份设置该月的最大天数（保存至 Clock_Day）
-  * 参    数：无（使用全局变量 MyRTC_Time）
+  * 参    数：无（使用全局变量 RTC_Time）
   * 返 回 值：无（结果保存在 Clock_Day 中）
   */
 void MonthDaySet(void)
 {
-	if (isLeepYear(MyRTC_Time[0]) == 1) // 闰年
+	if (isLeepYear(RTC_Time[0]) == 1) // 闰年
 	{
-		switch (MyRTC_Time[1])
+		switch (RTC_Time[1])
 		{
 			case 2:
 				Clock_Day = 29;
@@ -75,7 +75,7 @@ void MonthDaySet(void)
 	}
 	else // 平年
 	{
-		switch (MyRTC_Time[1])
+		switch (RTC_Time[1])
 		{
 			case 2:
 				Clock_Day = 28;

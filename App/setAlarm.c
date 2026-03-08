@@ -58,7 +58,7 @@ void TimerAlarmSet(void)
 {
 	// 把设定的时间转换为当天的总秒数
 	Alarm_Time = AlarmHour * 3600 + AlarmMin * 60 + AlarmSec;
-	uint32_t current_seconds = MyRTC_Time[3] * 3600 + MyRTC_Time[4] * 60 + MyRTC_Time[5];
+	uint32_t current_seconds = RTC_Time[3] * 3600 + RTC_Time[4] * 60 + RTC_Time[5];
 
 	// 计算距离下一次闹钟触发还有多少秒
 	int32_t delta_seconds;
@@ -88,7 +88,7 @@ void TimerAlarmSet(void)
   */
 void AlarmReact(void)
 {
-	uint32_t current_seconds = MyRTC_Time[3] * 3600 + MyRTC_Time[4] * 60 + MyRTC_Time[5];
+	uint32_t current_seconds = RTC_Time[3] * 3600 + RTC_Time[4] * 60 + RTC_Time[5];
 	uint32_t alarm_seconds = AlarmHour * 3600 + AlarmMin * 60 + AlarmSec;
 
 	int32_t delta_seconds;

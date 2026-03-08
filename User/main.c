@@ -2,15 +2,16 @@
 #include "task.h"
 #include "headfile.h"
 
-uint16_t MyRTC_Time[] = {2025,10,27,8,0,0};		//定义全局的时间数组，数组内容分别为年、月、日、时、分、秒
+uint16_t RTC_Time[] = {2025,10,27,8,0,0};		//定义全局的时间数组，数组内容分别为年、月、日、时、分、秒
 
 int main(void)
 {
 	/*模块初始化*/
 	TIM2_Init();
 	Led_Init();
+	Flash_Load();
 	OLED_Init();		//OLED初始化
-	MyRTC_Init();		//RTC初始化
+	RTC_Init();		//RTC初始化
 	Key_Init();			//按键初始化
 	Buzzer_Init();		//蜂鸣器初始化
 		
